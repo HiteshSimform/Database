@@ -1,0 +1,5 @@
+28 - 01 - 2025
+
+SQL - Structure Query language
+Database - Collection of Data
+
