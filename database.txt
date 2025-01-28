@@ -3,3 +3,79 @@
 SQL - Structure Query language
 Database - Collection of Data
 
+Relational and Non-Relational Database (NoSQL)
+
+DDL (data Definition Language) : create, alter, rename, truncate and drop.
+DQL (Data Query Language) : select
+DML (Data Manipulation Language) : insert, update and delete
+DCL (Data Control Language) : grant and revoke permission to users
+TCL (Transaction Control Language) : start transaction, commit, rollback
+
+create Database : create database database_name;
+use database_name;
+
+create table :
+
+create table table_name(
+    col_name datatype,
+    ....
+);
+
+Insert : insert into table_name values (value1,value2)
+
+select * from table_name;
+
+Key : 
+
+Primary Key - Uniquely identifies each row. - Unique and Not null
+Foreign Key - refers to the primary key in another table.
+
+Two columns combination is also exist in primary key.
+- but both columns values are different.
+
+DEFAULT - use for if we not found any value than automatically set that default value.
+Check - We can set limit on value.
+constraints : 
+
+Where : It is use for conditions in Query.
+
+Distinct : Use for get all Distinct vakue form the columns.
+
+Operators : 
+
+- Arithmatic Operators : + addition, - subtraction, * multiplication, / division, % modulus
+- Comparision Operators : = equal to, != not equal to, >, >=, <, <=
+- Logical Operators : AND, OR, IN, BETWEEN, ALL, LIKE, ANY
+- Bitwise Operators : & (Bitwise AND), | (Bitwise OR)
+
+
+LIMIT Clause
+Order By Clause
+
+Ascending and Descending
+
+
+Aggregate Functions : 
+
+COUNT()
+MAX()
+MIN()
+SUM()
+AVG()
+
+Group By Clause :
+
+Group rows that have the same values into summary rows.
+
+Having Clause : 
+
+Use for apply condition on Groups
+
+General Order : 
+
+SELECT column(s)
+FROM table_name
+WHERE condition
+GROUP BY column(s)
+HAVING condition
+ORDER BY column(s) ASC;
