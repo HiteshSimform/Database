@@ -79,3 +79,203 @@ WHERE condition
 GROUP BY column(s)
 HAVING condition
 ORDER BY column(s) ASC;
+
+29-01-2025
+
+Table Related queries : 
+
+- Update
+
+Update student
+set grade="O"
+where grade="A";
+
+error safe update mode
+
+set sql_safe_updates=0;
+
+all marks update : 
+update student 
+set marks = marks + 1;
+
+Delete : to delete existing rows
+
+delete from student
+where marks<30;
+
+delete from student;  - delete all the data from table
+
+- Foreign Key : 
+
+foreign key (dept_id) references dept(id)
+
+Cascading for Foreign Key : 
+
+On Update Cascade : 
+On Delete Cascade :
+
+
+- Alter - to change th schema
+
+Add Column : 
+
+- alter table table_name
+add column column_name
+
+Drop Column : 
+
+- alter table table_name
+drop column column_name
+
+Rename Table :
+- alter table table_name
+rename to new_table_name
+
+change column(rename) :
+
+alter table table_name
+change column old_name new_name new_datatype new_constraints;
+
+modify column (modify datatype/constraints)
+
+alter table table_name
+modify col_name new_datatype new_constraints;
+
+Truncate : to delete table's data.
+
+truncate table table_name;
+
+
+-------------------------------------------------------------------------------
+
+Joins in SQL :
+Joins is used to combine rows from two or more tables, based on a related column between them.
+
+Types of Joins : 
+
+- Inner Join : Returns records that have matching values in both tables
+
+Outer Joins : 
+
+- Left Join
+- Right Join
+- Full Join
+
+
+Inner Join Query : 
+
+select column(s)
+from tableA
+inner join tableB
+on tableA.col_name = table.col_name;
+
+Left Join : 
+- Returns all the records from the left table, and the matched records from the right table.
+
+select column(s)
+from tableA
+left join tableB
+on tableA.col_name=tableB.col_name;
+
+Right Join : 
+- Returns all the records from the right table, and the matched records from the left table.
+
+select column(s)
+from tableA
+right join tableB
+on tableA.col_name=tableB.col_name;
+
+overlap the data.
+
+Full Join : 
+
+Returns all records when there is a match in either left or right table
+
+
+select column(s)
+from tableA
+left join tableB
+on tableA.col_name=tableB.col_name
+union
+select column(s)
+from tableA
+right join tableB
+on tableA.col_name=tableB.col_name;
+
+left join
+union
+right join
+
+union gives unique values
+
+Left Exclusive Join : Only gives left table's data and also not include common data from right table
+
+select column(s)
+from tableA
+left join tableB
+on tableA.col_name=tableB.col_name
+where tableB.col_name is null;
+
+
+
+Right Exclusive Join : Only gives right table's data and also not include common data from left table
+
+select column(s)
+from tableA
+right join tableB
+on tableA.col_name=tableB.col_name
+where tableA.col_name is null;
+
+
+self join : It is a regular join but the table is joined with itself.
+
+select column(s)
+from table as a
+join table as b
+on a.col_name=b.col_name;
+
+Union : It is used to combine the result-set of two or more SELECT statements.
+Give UNIQUE records.
+
+To use it  :
+- every SELECT should have same no. of columns
+- columns must have similar data types
+- columns in every SELECT should be in same Order
+
+select column(s) from tableA
+union
+select column(s) from tableB;
+
+Union All : it give duplicates also
+
+select column(s) from tableA
+union all
+select column(s) from tableB;
+
+SQL Sub Queries : 
+
+A Subquery or inner query or a Nested auery is a query within another SQL query.
+It involves 2 select statements.
+
+select column(s)
+from table_name
+where col_name operator
+(subquery);
+
+select max(marks) from (select * from student where city= "Delhi") ad temp;
+
+select (select max(marks) from student),name
+from student;
+
+MySQL Views : 
+
+A view is a virtual table based on the result-set of an SQL statement.
+
+create view view1 as
+select rollno, name, marks from student;
+
+select * view from view1
+where marks>90;
+
+drop the view
+drop view view1;
