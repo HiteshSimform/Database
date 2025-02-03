@@ -1,0 +1,102 @@
+-- Database: employee
+
+-- DROP DATABASE IF EXISTS employee;
+
+CREATE DATABASE employee
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'en_IN'
+    LC_CTYPE = 'en_IN'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+create table EmployeeInfo(
+EmpID int Primary Key,
+EmpFname varchar(50) not null,
+EmpLname varchar(50) not null,
+Department varchar(50) not null,
+Project varchar(50) not null,
+Address varchar(50) not null,
+DOB DATE not null,
+Gender varchar(1) not null
+);
+
+create table EmployeePosition(
+EmpID int primary key references EmployeeInfo(EmpID) ON DELETE CASCADE,
+EmpPosition varchar(50) not null,
+DateOfjoining DATE not null,
+Salary numeric(10,2)
+);
+
+insert into EmployeeInfo values
+(1,'Sanjay','Mehra','HR','P1','Hyderabad(HYD)','1976-12-01','M'),
+(2,'Ananya','Mishra','Admin','P2','Delhi(DEL)','1968-05-02','F'),
+(3,'Rohan','Diwan','Account','P3','Mumbai(BOM)','1980-01-01','M'),
+(4,'Sonia','Kulkarni','HR','P1','Hyderabad(HYD)','1992-05-02','F'),
+(5,'Ankit','Kapoor','Admin','P2','Delhi(DEL)','1994-07-03','M');
+
+insert into EmployeePosition values
+(1,'Manager','2022-05-01',500000),
+(2,'Executive','2022-05-02',75000),
+(3,'Manager','2022-05-01',90000),
+(4,'Lead','2022-05-02',85000),
+(5,'Executive','2022-05-01',300000)
+
+select * from EmployeeInfo;
+
+select * from EmployeePosition;
+
+-- 1. Write a query to fetch the number of employees working in the department ‘Admin’
+
+select count(Department) from  EmployeeInfo
+where Department = 'Admin';
+
+-- 2. Write a query to retrieve the first four characters of  EmpLname from the EmployeeInfo table.
+
+select EmpLname, LEFT(EmpLname,4) from EmployeeInfo;
+
+-- 3. Write q query to find all the employees whose salary is between 50000 to 100000.
+
+select eif.EmpFname, eif.EmpLname, epos.Salary
+from  EmployeePosition as epos
+join EmployeeInfo as eif on eif.EmpID = epos.EmpID
+where epos.Salary between 50000 and 100000;
+
+-- 4. Write a query to find the names of employees that begin with ‘S’
+
+select EmpFname from EmployeeInfo
+where EmpFname like 'S%';
+
+-- 5. Write a query to fetch top N records order by salary. (ex. top 5 records)
+
+select * from EmployeePosition
+order by Salary DESC
+limit 3;
+
+-- 6. Write a query to fetch details of all employees excluding the employees with first names, “Sanjay” and “Sonia” from the EmployeeInfo table.
+
+select  * from EmployeeInfo
+where EmpFname not in ('Sanjay', 'Sonia');
+
+-- 7. Write a query to fetch the department-wise count of employees sorted by department’s count in ascending order.
+
+select Department, count(*) as empCount from EmployeeInfo
+group by Department
+order by empCount ASC;
+
+-- 8. Create indexing for any particular field and show the difference in data fetching before and after indexing
+
+-- Before create Index
+select empID, empFname from EmployeeInfo
+where Department  = 'Admin';
+
+-- After create index
+
+create index idx 
+on EmployeeInfo (empID, empFname);
+
+select empID, empFname from EmployeeInfo
+where Department  = 'Admin';
+

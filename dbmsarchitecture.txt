@@ -1,0 +1,4 @@
+Abstraction : Simplify system for users
+
+System hides the certain details.
+
