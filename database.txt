@@ -279,3 +279,29 @@ where marks>90;
 
 drop the view
 drop view view1;
+
+
+Topics :
+
+
+Section 8. Common Table Expressions
+
+    PostgreSQL CTE – introduce you to PostgreSQL common table expressions or CTEs.
+    Recursive query using CTEs – discuss the recursive query and learn how to apply it in various contexts.
+
+Section 6. Grouping sets, Cubes, and Rollups
+
+    Grouping Sets  – generate multiple grouping sets in reporting.
+    Cube – define multiple grouping sets that include all possible combinations of dimensions.
+    Rollup – generate reports that contain totals and subtotals.
+
+Section 9. Modifying Data
+
+In this section, you will learn how to insert data into a table with the INSERT statement, modify existing data with the UPDATE statement, and remove data with the DELETE statement. Additionally, you will learn how to use the UPSERT statement to merge data.
+
+    Insert – guide you on how to insert a single row into a table.
+    Insert multiple rows – show you how to insert multiple rows into a table.
+    Update – update existing data in a table.
+    Update join – update values in a table based on values in another table.
+    Delete – delete data in a table.
+    Upsert – insert or update data if the new row already exists in the table.
