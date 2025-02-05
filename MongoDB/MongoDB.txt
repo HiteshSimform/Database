@@ -1,1 +1,11 @@
 use database_name   (for use that database and work on that)
+
+db.createCollection("collection_name)
+
+MongoDB Queries : 
+
+db.students.insertOne(''); 
+
+05-02-2025
+
+MongoDB Aggregation Pipeline
