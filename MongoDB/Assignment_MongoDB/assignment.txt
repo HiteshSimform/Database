@@ -3,7 +3,80 @@ Please find below questions and try to write queries for same.
 1) Batch Create with minimum 100 records in MongoDb (create batch).
 
 2) Batch Update with minimum 100 records  in MongoDB (update batch).
+db.employees.updatemany({"status":"inactive"},{$set:{"status":"active"}})
 
 3) Perform indexing on particular 3 fields in MongoDB.
 
+// Compound Index 1: Department and Performance Rating
+db.employees.createIndex(
+    {
+        "department": 1, 
+        "performance.rating": -1
+    }
+)
+
+// Compound Index 2: Skills and Department
+db.employees.createIndex(
+    {
+        "skills": 1, 
+        "department": 1
+    }
+)
+
+// Compound Index 3: Status and Metadata Level
+db.employees.createIndex(
+    {
+        "status": 1, 
+        "metadata.level": 1
+    }
+)
+
+// Compound Index 4: Comprehensive Search Index
+db.employees.createIndex(
+    {
+        "department": 1,
+        "skills": 1, 
+        "performance.rating": -1,
+        "metadata.level": 1
+    }
+)
+
+
 4) Find duplicates using aggregation in MongoDB
+
+// Comprehensive duplicate check
+db.employees.aggregate([
+    { 
+        "$group": { 
+            "_id": {
+          
+                "department": "$department"
+            }, 
+            "count": { "$sum": 1 }
+        } 
+    },
+    { 
+        "$match": { 
+            "count": { "$gt": 1 } 
+        } 
+    }
+])
+
+
+
+
+// Efficient Query Using Compound Index
+db.employees.find({
+    department: "Sales",     // Exact Match
+    salary: { $gt: 50000 },  // Range Query
+    "contact.email": /gmail.com$/ // Partial Match
+}).sort({ salary: 1 })
+
+index searching test for index
+
+
+
+db.employees.find({
+    "department": "Sales",
+    "skills": "data analysis"
+}).explain("executionStats")

@@ -6,18 +6,13 @@
 - T2 Architecture
 - T3 Architecture
 
-Certainly! Here's the entire content, including SQL setup, data insertion, queries, and explanations, in one complete `README.md` format:
 
-```markdown
-# Employee Database Management System
-
-This repository contains the SQL script to manage an employee database with basic operations, including table creation, data insertion, and queries for fetching employee information.
+# SQL Assignment
 
 ## Database Setup
 
 ### Create Database
-
-```sql
+```
 -- Create Employee Database
 CREATE DATABASE employee
     WITH
@@ -30,15 +25,9 @@ CREATE DATABASE employee
     IS_TEMPLATE = False;
 ```
 
-This command will create a new database called `employee` with specified configurations.
-
 ### Create Tables
 
-The database includes two main tables:
-1. `EmployeeInfo`: Contains general employee details such as name, department, project, etc.
-2. `EmployeePosition`: Contains details about the employee's position, date of joining, and salary.
-
-```sql
+```
 -- Create EmployeeInfo Table
 CREATE TABLE EmployeeInfo (
     EmpID int PRIMARY KEY,
@@ -60,9 +49,7 @@ CREATE TABLE EmployeePosition (
 );
 ```
 
-### Insert Sample Data
-
-Insert sample records into the tables `EmployeeInfo` and `EmployeePosition` to simulate real data.
+### Insert  Data
 
 ```sql
 -- Insert Data into EmployeeInfo Table
@@ -84,8 +71,6 @@ INSERT INTO EmployeePosition VALUES
 
 ### Sample Data Preview
 
-You can preview the inserted data using the following SQL queries:
-
 ```sql
 -- Select all records from EmployeeInfo Table
 SELECT * FROM EmployeeInfo;
@@ -93,12 +78,14 @@ SELECT * FROM EmployeeInfo;
 -- Select all records from EmployeePosition Table
 SELECT * FROM EmployeePosition;
 ```
+### EmployeeInfo : 
+![Description of Image](Assignment/output/employeeInfoTable.png)
 
+### EmployeePosition :
+![Description of Image](Assignment/output/EmployeePositionTable.png)
 ---
 
 ## SQL Queries
-
-Below are a series of SQL queries that perform various operations on the `employee` database.
 
 ### 1. Fetch the Number of Employees in 'Admin' Department
 
@@ -107,14 +94,14 @@ SELECT count(Department)
 FROM EmployeeInfo
 WHERE Department = 'Admin';
 ```
-
+![Description of Image](Assignment/output/Q1.png)
 ### 2. Retrieve the First Four Characters of Employee's Last Name
 
 ```sql
 SELECT EmpLname, LEFT(EmpLname, 4) 
 FROM EmployeeInfo;
 ```
-
+![Description of Image](Assignment/output/Q2.png)
 ### 3. Find Employees Whose Salary is Between 50,000 and 100,000
 
 ```sql
@@ -123,6 +110,8 @@ FROM EmployeePosition AS epos
 JOIN EmployeeInfo AS eif ON eif.EmpID = epos.EmpID
 WHERE epos.Salary BETWEEN 50000 AND 100000;
 ```
+![Description of Image](Assignment/output/Q3.png)
+
 
 ### 4. Find Employees Whose First Name Begins with 'S'
 
@@ -131,6 +120,8 @@ SELECT EmpFname
 FROM EmployeeInfo
 WHERE EmpFname LIKE 'S%';
 ```
+![Description of Image](Assignment/output/Q4.png)
+
 
 ### 5. Fetch Top N Records Ordered by Salary (Top 3 Records Example)
 
@@ -139,6 +130,8 @@ SELECT * FROM EmployeePosition
 ORDER BY Salary DESC
 LIMIT 3;
 ```
+![Description of Image](Assignment/output/Q5.png)
+
 
 ### 6. Exclude Employees with First Names "Sanjay" and "Sonia"
 
@@ -147,6 +140,8 @@ SELECT *
 FROM EmployeeInfo
 WHERE EmpFname NOT IN ('Sanjay', 'Sonia');
 ```
+![Description of Image](Assignment/output/Q6.png)
+
 
 ### 7. Department-wise Count of Employees Sorted by Employee Count
 
@@ -156,7 +151,7 @@ FROM EmployeeInfo
 GROUP BY Department
 ORDER BY empCount ASC;
 ```
-
+![Description of Image](Assignment/output/Q7.png)
 ### 8. Create an Index for a Particular Field and Show Data Fetching Difference
 
 #### Before Index Creation
@@ -185,16 +180,3 @@ WHERE Department = 'Admin';
 ![Description of Image](https://github.com/HiteshSimform/Database/blob/master/Assignment/output/create_index.png)
 
 ![Description of Image](https://github.com/HiteshSimform/Database/blob/master/Assignment/output/after_index.png)
-
-## Indexing Performance
-
-Creating an index on columns used in queries can significantly improve query performance. You can observe the difference in data fetching before and after creating an index on `empID` and `empFname` fields. An index speeds up the query execution by allowing the database engine to quickly locate the required data.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-```
-
-This complete `README.md` file contains all the necessary setup, including database creation, data insertion, and queries. It is structured in a way that guides the user step by step through the process. You can use this for documentation or in any project related to the `employee` database.

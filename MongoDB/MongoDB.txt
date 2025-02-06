@@ -9,3 +9,60 @@ db.students.insertOne('');
 05-02-2025
 
 MongoDB Aggregation Pipeline
+
+
+db.Orders.aggregrate([{},{}])
+
+$match
+$group
+
+2 stage aggregation Pipeline
+
+List common : 
+
+sum
+sort
+count
+-1 for desc
+1 for asc
+
+limit
+
+company.location.country - when data is like object
+
+unwind   - for array
+
+grouping after unwind 
+
+addFields
+
+accumulator : sum
+
+project
+
+regex - match pattern in perticular field
+
+Categorise
+
+push operator
+
+$all
+
+$lookup
+from
+localfield
+foreignField
+as
+
+$addFields
+$arrayElementAt
+$arrayEleAt
+
+PyMongo :
+
+Geospatial query
+For Map - Real life general application
+
+Limitations : High transactional Data , not use MongoDB
+
+aggregrate and Group functions :
